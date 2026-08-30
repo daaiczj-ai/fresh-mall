@@ -1,0 +1,14 @@
+<view class="page">
+  <view class="address-card" wx:for="{{addresses}}" wx:key="id" bindtap="selectAddress" data-id="{{item.id}}">
+    <view class="addr-header">
+      <text class="addr-name">{{item.name}} {{item.phone}}</text>
+      <text class="default-tag" wx:if="{{item.is_default}}">默认</text>
+    </view>
+    <text class="addr-detail">{{item.province}}{{item.city}}{{item.district}}{{item.detail}}</text>
+    <view class="addr-actions" catchtap="">
+      <text bindtap="goEdit" data-id="{{item.id}}">编辑</text>
+      <text bindtap="deleteAddress" data-id="{{item.id}}">删除</text>
+    </view>
+  </view>
+  <button class="btn-add" bindtap="goEdit">+ 新增地址</button>
+</view>

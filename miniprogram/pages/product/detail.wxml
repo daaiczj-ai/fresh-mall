@@ -1,0 +1,88 @@
+<view class="page" wx:if="{{product}}">
+  <swiper class="image-swiper" indicator-dots circular>
+    <swiper-item wx:for="{{product.galleryImages}}" wx:key="*this">
+      <image class="main-image" src="{{item}}" mode="aspectFill" />
+    </swiper-item>
+  </swiper>
+
+  <view class="info-card card">
+    <view class="price-row">
+      <text class="price">¥{{displayPrice}}</text>
+      <text class="original-price text-gray" wx:if="{{product.original_price}}">¥{{product.original_price}}</text>
+      <text class="unit">/{{product.product_type === 'weight' ? '斤' : product.unit}}</text>
+    </view>
+    <text class="product-name">{{product.name}}</text>
+    <text class="product-subtitle text-gray">{{product.subtitle}}</text>
+    <text class="sales text-gray text-sm">已售 {{product.sales}} {{product.unit}}</text>
+  </view>
+
+  <view class="spec-card card" bindtap="showSkuPanel" wx:if="{{product.product_type === 'sku'}}">
+    <text>规格</text>
+    <text class="text-gray">{{selectedSku.sku_name}} ›</text>
+  </view>
+
+  <view class="spec-card card" bindtap="showSkuPanel" wx:if="{{product.product_type === 'weight'}}">
+    <text>重量</text>
+    <text class="text-gray">{{weight}}g 起 ›</text>
+  </view>
+
+  <view class="desc-card card" wx:if="{{product.description}}">
+    <text class="desc-title">商品详情</text>
+    <text class="desc-content">{{product.description}}</text>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar safe-bottom">
+    <view class="bar-icon" bindtap="toggleFavorite">
+      <text>{{isFavorite ? '❤️' : '🤍'}}</text>
+      <text class="icon-text">收藏</text>
+    </view>
+    <view class="bar-icon" bindtap="goCart">
+      <text>🛒</text>
+      <text class="icon-text">购物车</text>
+    </view>
+    <button class="btn-cart" bindtap="showSkuPanel" data-mode="cart">加入购物车</button>
+    <button class="btn-buy" bindtap="buyNow">立即购买</button>
+  </view>
+
+  <!-- SKU 弹窗 -->
+  <view class="sku-mask" wx:if="{{showSku}}" bindtap="hideSkuPanel">
+    <view class="sku-panel" catchtap="preventBubble">
+      <view class="sku-header">
+        <image class="sku-img" src="{{product.cover}}" />
+        <view>
+          <text class="price">¥{{panelPrice}}</text>
+          <text class="sku-selected" wx:if="{{product.product_type === 'sku'}}">已选：{{selectedSku.sku_name}}</text>
+          <text class="sku-selected" wx:if="{{product.product_type === 'weight'}}">已选：{{weight}}g（¥{{displayPrice}}/斤）</text>
+        </view>
+      </view>
+
+      <view class="sku-section" wx:if="{{product.product_type === 'sku'}}">
+        <text class="sku-label">规格</text>
+        <view class="sku-options">
+          <view class="sku-option {{selectedSku.id === item.id ? 'active' : ''}}" wx:for="{{product.skus}}" wx:key="id" bindtap="selectSku" data-sku="{{item}}">{{item.sku_name}}</view>
+        </view>
+      </view>
+
+      <view class="sku-section" wx:if="{{product.product_type === 'weight'}}">
+        <text class="sku-label">重量 (克)</text>
+        <view class="qty-control">
+          <text class="qty-btn" catchtap="changeWeight" data-type="minus">-</text>
+          <text class="qty-num">{{weight}}g</text>
+          <text class="qty-btn" catchtap="changeWeight" data-type="plus">+</text>
+        </view>
+      </view>
+
+      <view class="sku-section" wx:if="{{product.product_type !== 'weight'}}">
+        <text class="sku-label">数量</text>
+        <view class="qty-control">
+          <text class="qty-btn" catchtap="changeQuantity" data-type="minus">-</text>
+          <text class="qty-num">{{quantity}}</text>
+          <text class="qty-btn" catchtap="changeQuantity" data-type="plus">+</text>
+        </view>
+      </view>
+
+      <button class="btn-confirm" bindtap="confirmPanel">{{panelMode === 'buy' ? '立即购买' : '确定'}}</button>
+    </view>
+  </view>
+</view>

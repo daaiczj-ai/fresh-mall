@@ -1,0 +1,24 @@
+.none-row {
+  display: flex; justify-content: space-between; align-items: center;
+  background: #fff; margin: 16rpx 24rpx; padding: 28rpx 24rpx; border-radius: 12rpx;
+}
+
+.coupon-card {
+  display: flex; align-items: center; background: #fff;
+  margin: 16rpx 24rpx; border-radius: 12rpx; overflow: hidden; position: relative;
+}
+.coupon-card.disabled { opacity: 0.55; }
+.coupon-left {
+  width: 200rpx; background: linear-gradient(135deg, #2ECC71, #27AE60);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: #fff; padding: 24rpx; flex-shrink: 0; align-self: stretch;
+}
+.coupon-value { font-size: 40rpx; font-weight: bold; }
+.coupon-type { font-size: 22rpx; margin-top: 4rpx; }
+.coupon-right { flex: 1; padding: 20rpx 56rpx 20rpx 20rpx; }
+.coupon-name { font-weight: bold; display: block; }
+.coupon-desc { display: block; margin-top: 4rpx; }
+.disable-tip { color: #E74C3C; font-size: 22rpx; margin-top: 8rpx; display: block; }
+.check { color: #2ECC71; font-size: 36rpx; font-weight: bold; padding-right: 20rpx; }
+.empty { text-align: center; color: #999; padding: 80rpx 24rpx; }
+.link { display: block; color: #2ECC71; margin-top: 20rpx; }

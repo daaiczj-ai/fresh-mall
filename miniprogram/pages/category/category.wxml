@@ -1,0 +1,37 @@
+<page-meta background-color-top="#2ECC71" background-text-style="light" />
+<view class="page">
+  <custom-nav title="商品分类" />
+  <view class="category-layout">
+    <scroll-view scroll-y class="category-sidebar">
+      <view
+        class="sidebar-item {{activeCategory === item.id ? 'active' : ''}}"
+        wx:for="{{categories}}"
+        wx:key="id"
+        bindtap="switchCategory"
+        data-id="{{item.id}}"
+      >
+        {{item.name}}
+      </view>
+    </scroll-view>
+
+    <scroll-view scroll-y class="product-list" bindscrolltolower="onReachBottom">
+      <view class="product-item" wx:for="{{products}}" wx:key="id" bindtap="goProduct" data-id="{{item.id}}">
+        <image class="item-img" src="{{item.cover}}" mode="aspectFill" />
+        <view class="item-info">
+          <text class="item-name">{{item.name}}</text>
+          <text class="item-subtitle text-gray text-sm">{{item.subtitle}}</text>
+          <view class="item-bottom">
+            <view class="item-price">
+              <text class="price">¥{{item.price}}</text>
+              <text class="text-gray text-sm">/{{item.unit}}</text>
+            </view>
+            <text class="text-gray text-sm">已售{{item.sales}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="loading-tip" wx:if="{{loading}}">加载中...</view>
+      <view class="loading-tip" wx:if="{{!hasMore && products.length}}">没有更多了</view>
+      <view class="empty-tip" wx:if="{{!products.length && !loading}}">暂无商品</view>
+    </scroll-view>
+  </view>
+</view>

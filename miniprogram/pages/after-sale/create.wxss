@@ -1,0 +1,10 @@
+.page { padding: 24rpx; }
+.card { background: #fff; border-radius: 16rpx; padding: 24rpx; margin-bottom: 20rpx; }
+.label { font-weight: bold; display: block; margin-bottom: 16rpx; }
+.type-row { display: flex; gap: 16rpx; }
+.type-item { padding: 12rpx 24rpx; border: 2rpx solid #eee; border-radius: 8rpx; font-size: 26rpx; }
+.type-item.active { border-color: #2ECC71; color: #2ECC71; background: #E8F8F0; }
+.input { background: #f5f6fa; border-radius: 8rpx; padding: 16rpx; margin-bottom: 16rpx; }
+.textarea { width: 100%; min-height: 160rpx; background: #f5f6fa; border-radius: 8rpx; padding: 16rpx; box-sizing: border-box; }
+.btn-submit { margin-top: 20rpx; background: #2ECC71; color: #fff; border-radius: 44rpx; border: none; }
+.btn-submit::after { border: none; }

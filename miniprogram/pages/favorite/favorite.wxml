@@ -1,0 +1,10 @@
+<view class="page">
+  <view class="fav-item" wx:for="{{favorites}}" wx:key="id" bindtap="goProduct" data-id="{{item.product_id}}">
+    <image class="fav-img" src="{{item.product.cover}}" />
+    <view class="fav-info">
+      <text>{{item.product.name}}</text>
+      <text class="price">¥{{item.product.price}}</text>
+    </view>
+  </view>
+  <view class="empty" wx:if="{{!favorites.length}}">暂无收藏</view>
+</view>

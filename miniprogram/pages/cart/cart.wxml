@@ -1,0 +1,49 @@
+<page-meta background-color-top="#2ECC71" background-text-style="light" />
+<view class="page">
+  <custom-nav title="购物车" />
+  <view wx:if="{{items.length}}">
+    <view class="cart-item" wx:for="{{items}}" wx:key="id">
+      <view class="checkbox {{item.selected ? 'checked' : ''}}" bindtap="toggleSelect" data-id="{{item.id}}">
+        <text wx:if="{{item.selected}}">✓</text>
+      </view>
+      <image class="item-img" src="{{item.product.cover}}" mode="aspectFill" />
+      <view class="item-info">
+        <text class="item-name">{{item.product.name}}</text>
+        <text class="item-sku text-gray text-sm" wx:if="{{item.sku}}">{{item.sku.sku_name}}</text>
+        <text class="item-weight text-gray text-sm" wx:if="{{item.weight}}">{{item.weight}}g</text>
+        <view class="item-bottom">
+          <view class="price-col">
+            <text class="price">¥{{item.subtotal}}</text>
+            <text class="unit-price text-gray text-sm" wx:if="{{item.product.product_type === 'weight'}}">¥{{item.unit_price}}/斤 · {{item.weight}}g</text>
+          </view>
+          <view class="qty-control" wx:if="{{item.product.product_type !== 'weight'}}">
+            <text class="qty-btn" bindtap="changeQty" data-id="{{item.id}}" data-type="minus">-</text>
+            <text class="qty-num">{{item.quantity}}</text>
+            <text class="qty-btn" bindtap="changeQty" data-id="{{item.id}}" data-type="plus">+</text>
+          </view>
+        </view>
+      </view>
+      <text class="remove-btn" bindtap="removeItem" data-id="{{item.id}}">删除</text>
+    </view>
+
+    <view class="bottom-bar safe-bottom">
+      <view class="select-all" bindtap="toggleAll">
+        <view class="checkbox {{allSelected ? 'checked' : ''}}">
+          <text wx:if="{{allSelected}}">✓</text>
+        </view>
+        <text>全选</text>
+      </view>
+      <view class="total-info">
+        <text>合计：</text>
+        <text class="price">¥{{total}}</text>
+      </view>
+      <button class="btn-checkout" bindtap="checkout">去结算</button>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <text class="empty-icon">🛒</text>
+    <text class="empty-text">购物车是空的</text>
+    <button class="btn-primary" bindtap="goShopping">去逛逛</button>
+  </view>
+</view>

@@ -1,0 +1,11 @@
+.member-card {
+  background: linear-gradient(135deg, #2ECC71, #27AE60);
+  margin: 24rpx; border-radius: 16rpx; padding: 40rpx; color: #fff;
+}
+.level-name { font-size: 40rpx; font-weight: bold; display: block; }
+.points { display: block; margin-top: 16rpx; font-size: 28rpx; }
+.spent { display: block; margin-top: 8rpx; font-size: 24rpx; opacity: 0.8; }
+.levels { margin: 0 24rpx; }
+.title { font-weight: bold; display: block; margin-bottom: 16rpx; }
+.level-item { padding: 16rpx 0; border-bottom: 1rpx solid #f5f5f5; }
+.level-label { font-weight: 500; display: block; margin-bottom: 4rpx; }

@@ -1,0 +1,4 @@
+.fav-item { display: flex; background: #fff; margin: 16rpx 24rpx; border-radius: 12rpx; padding: 16rpx; }
+.fav-img { width: 140rpx; height: 140rpx; border-radius: 8rpx; }
+.fav-info { margin-left: 16rpx; display: flex; flex-direction: column; justify-content: center; }
+.empty { text-align: center; color: #999; padding: 100rpx; }

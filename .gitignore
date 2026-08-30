@@ -1,0 +1,20 @@
+node_modules/
+dist/
+admin/dist/
+.env
+.env.local
+uploads/
+*.key
+miniprogram/private/*.key
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+miniprogram/node_modules/
+miniprogram/utils/config.local.js
+
+# 微信开发者工具本地配置（可含个人 AppID）
+miniprogram/project.private.config.json

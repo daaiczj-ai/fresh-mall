@@ -1,0 +1,29 @@
+.page { padding-bottom: 120rpx; }
+.status-card { text-align: center; padding: 40rpx; }
+.status-text { font-size: 40rpx; font-weight: bold; color: #2ECC71; display: block; }
+.status-tip { display: block; margin-top: 12rpx; }
+.pickup-code { margin-top: 16rpx; font-size: 28rpx; }
+.code { font-size: 48rpx; font-weight: bold; color: #E74C3C; letter-spacing: 8rpx; }
+
+.address-user { font-weight: bold; margin-bottom: 8rpx; }
+.address-detail { color: #666; font-size: 26rpx; }
+
+.goods-item { display: flex; align-items: center; padding: 12rpx 0; border-bottom: 1rpx solid #f5f5f5; }
+.goods-img { width: 100rpx; height: 100rpx; border-radius: 8rpx; margin-right: 16rpx; }
+.goods-info { flex: 1; }
+
+.info-row { display: flex; justify-content: space-between; padding: 10rpx 0; color: #666; font-size: 26rpx; }
+.info-row.total { font-weight: bold; color: #333; padding-top: 16rpx; border-top: 1rpx solid #f5f5f5; }
+
+.link-card { display: flex; justify-content: space-between; align-items: center; margin: 0 24rpx 20rpx; }
+
+.bottom-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 12rpx;
+  background: #fff; padding: 16rpx 24rpx;
+  box-shadow: 0 -2rpx 12rpx rgba(0,0,0,0.06);
+}
+
+.action-btn { font-size: 26rpx; padding: 12rpx 28rpx; border-radius: 44rpx; border: 2rpx solid #ddd; background: #fff; margin: 0; }
+.action-btn.primary { border-color: #2ECC71; background: #2ECC71; color: #fff; }
+.action-btn::after { border: none; }

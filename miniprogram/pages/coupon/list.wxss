@@ -1,0 +1,20 @@
+.tabs { display: flex; background: #fff; margin-bottom: 8rpx; }
+.tab { flex: 1; text-align: center; padding: 24rpx; color: #666; font-size: 28rpx; }
+.tab.active { color: #2ECC71; font-weight: bold; border-bottom: 4rpx solid #2ECC71; }
+
+.coupon-card { display: flex; background: #fff; margin: 16rpx 24rpx; border-radius: 12rpx; overflow: hidden; }
+.coupon-card.disabled { opacity: 0.5; }
+.coupon-left { width: 200rpx; background: linear-gradient(135deg, #2ECC71, #27AE60); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; padding: 24rpx; flex-shrink: 0; }
+.coupon-value { font-size: 40rpx; font-weight: bold; }
+.coupon-type { font-size: 22rpx; margin-top: 4rpx; }
+.coupon-right { flex: 1; padding: 20rpx; display: flex; flex-direction: column; justify-content: center; }
+.coupon-name { font-weight: bold; margin-bottom: 4rpx; }
+.coupon-desc { margin-top: 4rpx; }
+.coupon-status { color: #2ECC71; font-size: 24rpx; margin-top: 8rpx; }
+.receive-btn { margin-top: 12rpx; align-self: flex-start; background: #2ECC71; color: #fff; border: none; border-radius: 32rpx; }
+.receive-btn[disabled] { background: #ccc; color: #fff; }
+.receive-btn::after { border: none; }
+
+.empty { text-align: center; color: #999; padding: 100rpx 24rpx; }
+.link-btn { margin-top: 24rpx; background: transparent; color: #2ECC71; font-size: 28rpx; border: none; }
+.link-btn::after { border: none; }

@@ -1,0 +1,53 @@
+<view class="page" wx:if="{{order}}">
+  <view class="status-card card">
+    <text class="status-text">{{ORDER_STATUS[order.status]}}</text>
+    <text class="status-tip text-gray" wx:if="{{order.status === 'ready_pickup'}}">取货码：{{order.pickup_code}}</text>
+    <text class="status-tip text-gray" wx:if="{{order.status === 'delivering'}}">骑手正在配送中，请耐心等待</text>
+  </view>
+
+  <view class="card" wx:if="{{order.delivery_type === 'delivery' && order.address_snapshot}}">
+    <view class="address-user">{{order.address_snapshot.name}} {{order.address_snapshot.phone}}</view>
+    <view class="address-detail">{{order.address_snapshot.detail}}</view>
+  </view>
+
+  <view class="card" wx:if="{{order.delivery_type === 'pickup' && order.pickupStore}}">
+    <view class="address-user">自提门店：{{order.pickupStore.name}}</view>
+    <view class="address-detail">{{order.pickupStore.address}}</view>
+    <view class="pickup-code" wx:if="{{order.pickup_code}}">取货码：<text class="code">{{order.pickup_code}}</text></view>
+  </view>
+
+  <view class="card">
+    <view class="goods-item" wx:for="{{order.items}}" wx:key="id">
+      <image class="goods-img" src="{{item.product_image}}" />
+      <view class="goods-info">
+        <text>{{item.product_name}}</text>
+        <text class="text-gray text-sm" wx:if="{{item.sku_name}}">{{item.sku_name}}</text>
+        <text class="text-gray text-sm">x{{item.quantity}}</text>
+      </view>
+      <text>¥{{item.subtotal}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="info-row"><text>订单编号</text><text>{{order.order_no}}</text></view>
+    <view class="info-row"><text>下单时间</text><text>{{order.created_at_fmt}}</text></view>
+    <view class="info-row"><text>配送方式</text><text>{{order.delivery_type === 'delivery' ? '同城配送' : '到店自提'}}</text></view>
+    <view class="info-row" wx:if="{{order.delivery_time_slot}}"><text>配送时间</text><text>{{order.delivery_time_slot}}</text></view>
+    <view class="info-row"><text>商品金额</text><text>¥{{order.product_amount}}</text></view>
+    <view class="info-row" wx:if="{{order.delivery_fee > 0}}"><text>配送费</text><text>¥{{order.delivery_fee}}</text></view>
+    <view class="info-row" wx:if="{{order.coupon_amount > 0}}"><text>优惠券</text><text>-¥{{order.coupon_amount}}</text></view>
+    <view class="info-row total"><text>实付金额</text><text class="price">¥{{order.pay_amount}}</text></view>
+  </view>
+
+  <view class="card link-card" bindtap="goAfterSaleList">
+    <text>我的售后记录</text>
+    <text class="text-gray">›</text>
+  </view>
+
+  <view class="bottom-bar safe-bottom" wx:if="{{order.status === 'pending_payment' || order.status === 'delivering' || order.status === 'ready_pickup' || canAfterSale}}">
+    <button class="action-btn" wx:if="{{canAfterSale}}" bindtap="goAfterSale">申请售后</button>
+    <button class="action-btn" wx:if="{{order.status === 'pending_payment'}}" bindtap="cancelOrder">取消订单</button>
+    <button class="action-btn primary" wx:if="{{order.status === 'pending_payment'}}" bindtap="payOrder">去支付</button>
+    <button class="action-btn primary" wx:if="{{order.status === 'delivering' || order.status === 'ready_pickup'}}" bindtap="confirmOrder">确认收货</button>
+  </view>
+</view>

@@ -1,0 +1,48 @@
+<view class="page">
+  <view class="tabs">
+    <view class="tab {{activeTab === 'center' ? 'active' : ''}}" bindtap="switchTab" data-tab="center">领券中心</view>
+    <view class="tab {{activeTab === 'mine' ? 'active' : ''}}" bindtap="switchTab" data-tab="mine">我的优惠券</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="empty">加载中...</view>
+
+  <block wx:elif="{{activeTab === 'center'}}">
+    <view class="coupon-card" wx:for="{{available}}" wx:key="id">
+      <view class="coupon-left">
+        <text class="coupon-value">{{item.displayValue}}</text>
+        <text class="coupon-type">{{COUPON_TYPE[item.type]}}</text>
+      </view>
+      <view class="coupon-right">
+        <text class="coupon-name">{{item.name}}</text>
+        <text class="coupon-desc text-gray text-sm">{{item.description}}</text>
+        <text class="coupon-desc text-gray text-sm" wx:if="{{item.min_amount > 0}}">满{{item.min_amount}}元可用</text>
+        <button
+          class="receive-btn"
+          size="mini"
+          disabled="{{item.received}}"
+          bindtap="receive"
+          data-id="{{item.id}}"
+        >{{item.received ? '已领取' : '立即领取'}}</button>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{!available.length}}">暂无可领优惠券</view>
+  </block>
+
+  <block wx:else>
+    <view class="coupon-card {{item.status !== 'unused' ? 'disabled' : ''}}" wx:for="{{coupons}}" wx:key="id">
+      <view class="coupon-left">
+        <text class="coupon-value">{{item.displayValue}}</text>
+        <text class="coupon-type">{{COUPON_TYPE[item.coupon.type]}}</text>
+      </view>
+      <view class="coupon-right">
+        <text class="coupon-name">{{item.coupon.name}}</text>
+        <text class="coupon-desc text-gray text-sm">{{item.coupon.description}}</text>
+        <text class="coupon-status">{{item.status === 'unused' ? '可使用' : item.status === 'used' ? '已使用' : '已过期'}}</text>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{!coupons.length}}">
+      <text>暂无优惠券</text>
+      <button class="link-btn" bindtap="goCenter">去领券中心 ›</button>
+    </view>
+  </block>
+</view>

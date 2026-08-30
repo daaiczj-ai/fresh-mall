@@ -1,0 +1,68 @@
+.page { min-height: 100vh; background: #F5F6FA; padding-bottom: 140rpx; }
+
+.amount-section {
+  background: #2ECC71;
+  padding: 60rpx 40rpx 80rpx;
+  text-align: center;
+  color: #fff;
+}
+
+.amount-label { font-size: 28rpx; opacity: 0.9; }
+.amount-value { margin: 16rpx 0; }
+.symbol { font-size: 36rpx; }
+.num { font-size: 72rpx; font-weight: bold; }
+.order-no { font-size: 24rpx; opacity: 0.8; }
+
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  margin: -40rpx 24rpx 20rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+}
+
+.pay-method { margin-top: -40rpx; }
+.method-title { font-weight: bold; display: block; margin-bottom: 20rpx; }
+.method-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  border: 2rpx solid #eee;
+  border-radius: 12rpx;
+}
+.method-item.active { border-color: #2ECC71; background: #F0FBF4; }
+.method-icon { font-size: 40rpx; margin-right: 16rpx; }
+.method-name { flex: 1; font-size: 28rpx; }
+.method-check { color: #2ECC71; font-weight: bold; }
+.dev-tip { color: #999; font-size: 22rpx; margin-top: 16rpx; }
+
+.goods-card { margin-top: 0; }
+.card-title { font-weight: bold; display: block; margin-bottom: 16rpx; }
+.goods-item { display: flex; align-items: center; padding: 12rpx 0; border-bottom: 1rpx solid #f5f5f5; }
+.goods-item:last-child { border-bottom: none; }
+.goods-img { width: 80rpx; height: 80rpx; border-radius: 8rpx; margin-right: 16rpx; }
+.goods-info { flex: 1; }
+.goods-name { font-size: 26rpx; display: block; }
+.goods-qty { font-size: 22rpx; color: #999; }
+.goods-price { font-size: 26rpx; color: #E74C3C; }
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #fff;
+  padding: 16rpx 24rpx;
+  box-shadow: 0 -2rpx 12rpx rgba(0,0,0,0.06);
+}
+
+.btn-pay {
+  background: linear-gradient(135deg, #2ECC71, #27AE60);
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  padding: 20rpx 0;
+  border: none;
+  width: 100%;
+}
+.btn-pay::after { border: none; }
+
+.loading { display: flex; align-items: center; justify-content: center; color: #999; }

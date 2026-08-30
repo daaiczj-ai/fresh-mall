@@ -1,0 +1,70 @@
+<page-meta background-color-top="#2ECC71" background-text-style="light" />
+<view class="page">
+  <custom-nav title="鲜果鲜蔬" show-search bind:search="goSearch" />
+
+  <swiper class="banner-swiper" indicator-dots autoplay circular interval="4000">
+    <swiper-item wx:for="{{banners}}" wx:key="id" bindtap="onBannerTap" data-link-type="{{item.link_type}}" data-link-value="{{item.link_value}}">
+      <image class="banner-img" src="{{item.image}}" mode="aspectFill" binderror="onImageError" data-img-type="banner" data-index="{{index}}"></image>
+    </swiper-item>
+  </swiper>
+
+  <view class="category-grid card">
+    <view class="category-item" wx:for="{{categories}}" wx:key="id" bindtap="goCategory" data-id="{{item.id}}">
+      <image class="category-icon" src="{{item.iconUrl}}" mode="aspectFill"></image>
+      <text class="category-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="section" wx:if="{{hotProducts.length}}">
+    <view class="section-header">
+      <text class="section-title">🔥 热销推荐</text>
+    </view>
+    <scroll-view scroll-x class="product-scroll">
+      <view class="product-card" wx:for="{{hotProducts}}" wx:key="id" bindtap="goProduct" data-id="{{item.id}}">
+        <image class="product-img" src="{{item.cover}}" mode="aspectFill" binderror="onImageError" data-img-type="hot" data-index="{{index}}"></image>
+        <text class="product-name">{{item.name}}</text>
+        <view class="product-price">
+          <text class="price-symbol">¥</text>
+          <text class="price-value">{{item.price}}</text>
+          <text class="product-unit">/{{item.unit}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="section" wx:if="{{newProducts.length}}">
+    <view class="section-header">
+      <text class="section-title">🌱 新品上市</text>
+    </view>
+    <view class="product-grid">
+      <view class="grid-item" wx:for="{{newProducts}}" wx:key="id" bindtap="goProduct" data-id="{{item.id}}">
+        <image class="grid-img" src="{{item.cover}}" mode="aspectFill" binderror="onImageError" data-img-type="new" data-index="{{index}}"></image>
+        <view class="grid-info">
+          <text class="grid-name">{{item.name}}</text>
+          <view class="grid-price">
+            <text class="price">¥{{item.price}}</text>
+            <text class="text-gray text-sm">/{{item.unit}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section" wx:if="{{recommendProducts.length}}">
+    <view class="section-header">
+      <text class="section-title">💚 为你推荐</text>
+    </view>
+    <view class="product-grid">
+      <view class="grid-item" wx:for="{{recommendProducts}}" wx:key="id" bindtap="goProduct" data-id="{{item.id}}">
+        <image class="grid-img" src="{{item.cover}}" mode="aspectFill" binderror="onImageError" data-img-type="recommend" data-index="{{index}}"></image>
+        <view class="grid-info">
+          <text class="grid-name">{{item.name}}</text>
+          <view class="grid-price">
+            <text class="price">¥{{item.price}}</text>
+            <text class="text-gray text-sm">/{{item.unit}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,33 @@
+<view class="page">
+  <view class="none-row" bindtap="selectNone">
+    <text>不使用优惠券</text>
+    <text class="check" wx:if="{{!selectedId}}">✓</text>
+  </view>
+
+  <view wx:if="{{loading}}" class="empty">加载中...</view>
+
+  <view
+    class="coupon-card {{item.canUse ? '' : 'disabled'}}"
+    wx:for="{{coupons}}"
+    wx:key="id"
+    bindtap="selectCoupon"
+    data-item="{{item}}"
+  >
+    <view class="coupon-left">
+      <text class="coupon-value">{{item.displayValue}}</text>
+      <text class="coupon-type">{{COUPON_TYPE[item.coupon.type]}}</text>
+    </view>
+    <view class="coupon-right">
+      <text class="coupon-name">{{item.coupon.name}}</text>
+      <text class="coupon-desc text-gray text-sm">{{item.coupon.description}}</text>
+      <text class="coupon-desc text-gray text-sm" wx:if="{{item.coupon.min_amount > 0}}">满{{item.coupon.min_amount}}元可用</text>
+      <text class="disable-tip" wx:if="{{!item.canUse}}">{{item.disableTip}}</text>
+    </view>
+    <text class="check" wx:if="{{selectedId === item.id && item.canUse}}">✓</text>
+  </view>
+
+  <view class="empty" wx:if="{{!loading && !coupons.length}}">
+    <text>暂无可用优惠券</text>
+    <navigator class="link" url="/pages/coupon/list?tab=center">去领券中心 ›</navigator>
+  </view>
+</view>

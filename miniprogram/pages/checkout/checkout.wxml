@@ -1,0 +1,88 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="state-box">
+    <text>加载中...</text>
+  </view>
+
+  <view wx:elif="{{loadError}}" class="state-box">
+    <text class="error-text">{{loadError}}</text>
+    <button class="btn-retry" bindtap="loadData">重新加载</button>
+  </view>
+
+  <block wx:elif="{{preview || needAddress}}">
+    <view class="delivery-tabs card">
+      <view class="tab {{deliveryType === 'delivery' ? 'active' : ''}}" bindtap="switchDelivery" data-type="delivery">同城配送</view>
+      <view class="tab {{deliveryType === 'pickup' ? 'active' : ''}}" bindtap="switchDelivery" data-type="pickup">到店自提</view>
+    </view>
+
+    <view class="address-card card" bindtap="goAddress" wx:if="{{deliveryType === 'delivery'}}">
+      <view wx:if="{{address}}">
+        <view class="address-user">{{address.name}} {{address.phone}}</view>
+        <view class="address-detail">{{address.province}}{{address.city}}{{address.district}}{{address.detail}}</view>
+      </view>
+      <view wx:else class="text-gray">请选择收货地址 ›</view>
+    </view>
+
+    <view class="address-card card pickup-card" wx:if="{{deliveryType === 'pickup'}}">
+      <view class="card-title">自提门店</view>
+      <view wx:if="{{store}}">
+        <view class="address-user">{{store.name}}</view>
+        <view class="address-detail">{{store.address}}</view>
+        <view class="pickup-tip">营业时间：{{store.business_hours}}</view>
+        <view class="pickup-tip highlight">支付成功后凭取货码到店取货</view>
+      </view>
+      <view wx:else class="text-gray">暂无可用门店</view>
+    </view>
+
+    <view wx:if="{{needAddress && deliveryType === 'delivery'}}" class="state-box">
+      <text class="error-text">请先添加收货地址</text>
+      <button class="btn-retry" bindtap="goAddAddress">添加地址</button>
+    </view>
+
+    <block wx:if="{{preview}}">
+      <view class="card" wx:if="{{deliveryType === 'delivery'}}">
+        <text class="card-title">配送时间</text>
+        <scroll-view scroll-x class="time-slots">
+          <view class="time-slot {{selectedTimeSlot === item ? 'active' : ''}}" wx:for="{{deliveryTimeSlots}}" wx:key="*this" bindtap="selectTimeSlot" data-slot="{{item}}">{{item}}</view>
+        </scroll-view>
+      </view>
+
+      <view class="card">
+        <text class="card-title">商品清单</text>
+        <view class="goods-item" wx:for="{{preview.items}}" wx:key="id">
+          <image class="goods-img" src="{{item.product.cover}}" />
+          <view class="goods-info">
+            <text>{{item.product.name}}</text>
+            <text class="text-gray text-sm" wx:if="{{item.product.product_type === 'weight'}}">{{item.weight}}g</text>
+            <text class="text-gray text-sm" wx:else>x{{item.quantity}}</text>
+          </view>
+          <text class="price">¥{{item.subtotal}}</text>
+        </view>
+      </view>
+
+      <view class="card coupon-row" bindtap="goCoupons">
+        <text>优惠券</text>
+        <text class="coupon-text {{selectedCouponName ? 'active' : 'text-gray'}}">{{selectedCouponName || '选择优惠券'}} ›</text>
+      </view>
+
+      <view class="card">
+        <text class="card-title">订单备注</text>
+        <input placeholder="{{deliveryType === 'pickup' ? '选填，可备注取货要求' : '选填，可备注口味偏好等'}}" value="{{remark}}" bindinput="onRemarkInput" />
+      </view>
+
+      <view class="card">
+        <view class="fee-row"><text>商品金额</text><text>¥{{preview.productAmount}}</text></view>
+        <view class="fee-row" wx:if="{{deliveryType === 'delivery'}}"><text>配送费</text><text>¥{{preview.deliveryFee}}</text></view>
+        <view class="fee-row" wx:if="{{preview.couponAmount > 0}}"><text>优惠券</text><text class="discount">-¥{{preview.couponAmount}}</text></view>
+        <view class="fee-row total"><text>实付金额</text><text class="price">¥{{preview.payAmount}}</text></view>
+      </view>
+
+      <view class="bottom-bar safe-bottom">
+        <view class="pay-total">
+          <text>合计：</text>
+          <text class="price">¥{{preview.payAmount}}</text>
+        </view>
+        <button class="btn-submit" bindtap="submitOrder">提交订单</button>
+      </view>
+    </block>
+  </block>
+</view>

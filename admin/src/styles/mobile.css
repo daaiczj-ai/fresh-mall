@@ -1,0 +1,118 @@
+/* 后台手机模式全局样式 */
+body.admin-mobile {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body.admin-mobile .el-dialog {
+  width: 92% !important;
+  max-width: 92vw;
+  margin: 0 auto;
+}
+
+body.admin-mobile .el-drawer.rtl {
+  width: 92% !important;
+}
+
+body.admin-mobile .el-table {
+  font-size: 12px;
+}
+
+body.admin-mobile .el-table .cell {
+  padding: 6px 8px;
+}
+
+body.admin-mobile .el-card {
+  border-radius: 10px;
+}
+
+body.admin-mobile .el-card__body {
+  padding: 12px;
+}
+
+body.admin-mobile .toolbar {
+  flex-wrap: wrap;
+  gap: 8px !important;
+}
+
+body.admin-mobile .toolbar .el-input,
+body.admin-mobile .toolbar .el-select {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 1 1 100%;
+}
+
+body.admin-mobile .toolbar .el-button {
+  flex: 1;
+  margin: 0 !important;
+}
+
+body.admin-mobile .pagination {
+  flex-wrap: wrap;
+  justify-content: center !important;
+}
+
+body.admin-mobile .el-pagination {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+body.admin-mobile .el-form-item__label {
+  width: 84px !important;
+}
+
+body.admin-mobile .detail-wrap {
+  padding: 0 !important;
+}
+
+body.admin-mobile .order-header {
+  flex-direction: column;
+  gap: 12px;
+}
+
+body.admin-mobile .action-bar {
+  flex-direction: column;
+  align-items: stretch !important;
+}
+
+body.admin-mobile .action-bar .el-button {
+  width: 100%;
+  margin: 0 !important;
+}
+
+body.admin-mobile .goods-cell {
+  flex-direction: column;
+  align-items: flex-start !important;
+}
+
+body.admin-mobile .profile-card {
+  flex-direction: column;
+  text-align: center;
+}
+
+body.admin-mobile .image-list-upload .list {
+  gap: 8px;
+}
+
+body.admin-mobile .business-hours-picker {
+  padding: 0;
+}
+
+body.admin-mobile .el-row .el-col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+body.admin-mobile .el-row .el-col-8,
+body.admin-mobile .el-row .el-col-16 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+body.admin-mobile .stat-value {
+  font-size: 22px !important;
+}
+
+body.admin-mobile [ref="chartRef"],
+body.admin-mobile .el-card div[style*="height:350px"] {
+  height: 260px !important;
+}

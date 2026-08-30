@@ -1,0 +1,49 @@
+<view class="page">
+  <scroll-view scroll-x class="tabs" enable-flex>
+    <view
+      class="tab {{activeTab === item.key ? 'active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="key"
+      bindtap="switchTab"
+      data-key="{{item.key}}"
+    >{{item.label}}</view>
+  </scroll-view>
+
+  <view wx:if="{{loading}}" class="empty">加载中...</view>
+
+  <block wx:elif="{{orders.length}}">
+    <view class="order-card" wx:for="{{orders}}" wx:for-item="order" wx:key="id">
+      <view class="order-header" bindtap="goDetail" data-id="{{order.id}}">
+        <text class="order-no">{{order.order_no}}</text>
+        <text class="order-status text-primary">{{ORDER_STATUS[order.status] || order.status}}</text>
+      </view>
+      <view
+        class="order-goods"
+        wx:for="{{order.items}}"
+        wx:for-item="goods"
+        wx:key="id"
+        bindtap="goDetail"
+        data-id="{{order.id}}"
+      >
+        <image class="goods-img" src="{{goods.product_image}}" mode="aspectFill" />
+        <view class="goods-info">
+          <text class="goods-name">{{goods.product_name}}</text>
+          <text class="text-gray text-sm" wx:if="{{goods.sku_name}}">{{goods.sku_name}}</text>
+          <text class="text-gray text-sm" wx:if="{{goods.weight}}">{{goods.weight}}g</text>
+          <text class="text-gray text-sm" wx:else>x{{goods.quantity}}</text>
+        </view>
+        <text class="goods-price">¥{{goods.subtotal}}</text>
+      </view>
+      <view class="order-footer">
+        <text>共{{order.items.length}}件 实付 <text class="price">¥{{order.pay_amount}}</text></text>
+        <view class="order-actions" catchtap="preventBubble">
+          <button class="action-btn" wx:if="{{order.status === 'pending_payment'}}" catchtap="payOrder" data-id="{{order.id}}">去支付</button>
+          <button class="action-btn" wx:if="{{order.status === 'pending_payment'}}" catchtap="cancelOrder" data-id="{{order.id}}">取消</button>
+          <button class="action-btn primary" wx:if="{{order.status === 'delivering' || order.status === 'ready_pickup'}}" catchtap="confirmOrder" data-id="{{order.id}}">确认收货</button>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class="empty" wx:else>暂无订单</view>
+</view>
